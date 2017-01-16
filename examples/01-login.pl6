@@ -20,7 +20,7 @@ if $uid.defined {
     printf("Logged on with user id '%d'\n", $uid);
 
     constant MODEL = 'res.users';
-    my $user-ids = $odoo.invoke(
+    my $user-ids   = $odoo.invoke(
         model  => MODEL,
         method => 'search',
         []
@@ -29,7 +29,7 @@ if $uid.defined {
 
     if $user-ids.elems > 0 {
         my $user-id = $user-ids[0];
-        my $user = $odoo.invoke(
+        my $user    = $odoo.invoke(
             model  => MODEL,
             method => 'browse',
             [ $user-id ]

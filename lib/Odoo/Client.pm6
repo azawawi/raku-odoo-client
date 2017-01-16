@@ -72,8 +72,16 @@ method login(Str :$database, Str :$username, Str :$password) {
 }
 
 method invoke(Str :$model, Str :$method, +@method-args) {
-    say "method args: ", @method-args.perl;
-    my @args = [$!database, $!uid, $!password, $model, $method, @method-args];
+    my @args = [$!database, $!uid, $!password, $model, $method];
+    if @method-args.elems == 0 {
+        @args.push([]);
+    } else {
+        my @foo;
+        for @method-args -> $arg {
+            @foo.push($arg);
+        }
+        @args.push(@foo);
+    }
     say @args.perl;
     my $result = $!client.call(
         service => "object",
