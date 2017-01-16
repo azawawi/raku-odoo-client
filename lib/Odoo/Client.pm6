@@ -1,5 +1,6 @@
 use v6;
 use JSON::RPC::Client;
+use Odoo::Client::Model;
 
 unit class Odoo::Client;
 
@@ -80,21 +81,19 @@ method login(Str :$database, Str :$username, Str :$password) {
     return $uid;
 }
 
-method invoke(Str :$model, Str :$method, *@method-args) {
-    my @args = [$!database, $!uid, $!password, $model, $method];
-    if @method-args.elems == 0 {
-        @args.push([]);
-    } else {
-        my @foo;
-        for @method-args -> $arg {
-            @foo.push($arg);
-        }
-        @args.push(@foo);
-    }
+multi method invoke(Str :$model, Str :$method, :$method-args) {
+    my @args = [$!database, $!uid, $!password, $model, $method, $method-args];
     my $result = $!client.call(
         service => "object",
         method  => "execute",
         args    => @args
     );
     return $result;
+}
+
+method model(Str $name) {
+    return Odoo::Client::Model.new(
+        :client(self),
+        :name($name)
+    );
 }
