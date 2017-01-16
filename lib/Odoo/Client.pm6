@@ -46,17 +46,39 @@ MIT License
 
 
 has JSON::RPC::Client $!client;
+has Str $!database;
+has Str $!username;
+has Str $!password;
+has Int $!uid;
 
 submethod BUILD(Str :$hostname, Int :$port) {
     my $url = sprintf("http://%s:%d/jsonrpc", $hostname, $port);
     $!client = JSON::RPC::Client.new(url => $url);
 }
 
-method login(Str :$database, :$username, :$password) {
+method login(Str :$database, Str :$username, Str :$password) {
     my $uid = $!client.call(
         service => "common", 
         method  => "login",
         args    => [$database, $username, $password]
     );
+    if $uid.defined {
+        $!database = $database;
+        $!username = $username;
+        $!password = $password;
+        $!uid      = $uid;
+    }
     return $uid;
+}
+
+method invoke(Str :$model, Str :$method, +@method-args) {
+    say "method args: ", @method-args.perl;
+    my @args = [$!database, $!uid, $!password, $model, $method, @method-args];
+    say @args.perl;
+    my $result = $!client.call(
+        service => "object",
+        method  => "execute",
+        args    => @args
+    );
+    return $result;
 }
