@@ -28,7 +28,7 @@ Odoo::Client - A simple Odoo ERP client that uses JSON RPC
 
 =head1 Description
 
-A simple L<Odoo|http://odoo.org> ERP client that uses JSON RPC.
+A simple L<Odoo|http://odoo.com> ERP client that uses JSON RPC.
 
 =head1 See Also
 

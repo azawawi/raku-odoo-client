@@ -46,7 +46,7 @@ $ TEST_AUTHOR=1 prove -ve "perl6 -Ilib"
 ## See Also
 
 - [JSON::RPC](https://github.com/bbkr/jsonrpc)
-- [Odoo ERP](http://odoo.org)
+- [Odoo ERP](http://odoo.com)
 
 ## Author
 
