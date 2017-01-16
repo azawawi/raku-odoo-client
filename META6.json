@@ -1,0 +1,15 @@
+{
+    "name"          : "Odoo::Client",
+    "version"       : "0.0.1",
+    "perl"          : "6.c",
+    "description"   : "A simple Odoo ERP client that uses JSON RPC",
+    "test-depends"  : [
+        "JSON::RPC",
+        "Test"
+    ],
+    "provides"      : {
+        "Odoo::Client"         : "lib/Odoo/Client.pm6"
+    },
+    "repo-type"     : "git",
+    "source-url"    : "git://github.com/azawawi/perl6-odoo-client.git"
+}
