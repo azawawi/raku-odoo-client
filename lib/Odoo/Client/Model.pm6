@@ -7,7 +7,6 @@ has $.client;
 has Str $.name;
 
 method create( %args ) {
-    say "create: " ~ %args.perl;
     return $.client.invoke(
         model       => $.name,
         method      => 'create',
