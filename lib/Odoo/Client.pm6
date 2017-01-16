@@ -56,9 +56,18 @@ submethod BUILD(Str :$hostname, Int :$port) {
     $!client = JSON::RPC::Client.new(url => $url);
 }
 
+method version() {
+    my $version = $!client.call(
+        service => "common",
+        method  => "version",
+        args    => []
+    );
+    return $version;
+}
+
 method login(Str :$database, Str :$username, Str :$password) {
     my $uid = $!client.call(
-        service => "common", 
+        service => "common",
         method  => "login",
         args    => [$database, $username, $password]
     );
@@ -71,7 +80,7 @@ method login(Str :$database, Str :$username, Str :$password) {
     return $uid;
 }
 
-method invoke(Str :$model, Str :$method, +@method-args) {
+method invoke(Str :$model, Str :$method, *@method-args) {
     my @args = [$!database, $!uid, $!password, $model, $method];
     if @method-args.elems == 0 {
         @args.push([]);
@@ -82,7 +91,6 @@ method invoke(Str :$model, Str :$method, +@method-args) {
         }
         @args.push(@foo);
     }
-    say @args.perl;
     my $result = $!client.call(
         service => "object",
         method  => "execute",
