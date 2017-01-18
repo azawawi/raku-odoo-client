@@ -40,7 +40,8 @@ $ prove -ve "perl6 -Ilib"
 - To run all tests including author tests (Please make sure
 [Test::Meta](https://github.com/jonathanstowe/Test-META) is installed):
 ```
-$ TEST_AUTHOR=1 prove -ve "perl6 -Ilib"
+$ zef install Test::META
+$ TEST_AUTHOR=1 prove -e "perl6 -Ilib"
 ```
 
 ## See Also
