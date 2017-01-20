@@ -19,5 +19,5 @@ install:
 
 script:
     - prove -ve "perl6 -Ilib"
-    - TEST_AUTHOR=1 prove -ve "perl6 -Ilib"
+    - AUTHOR_TESTING=1 prove -ve "perl6 -Ilib"
     - zef install Odoo::Client
