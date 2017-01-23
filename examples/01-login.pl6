@@ -26,7 +26,7 @@ printf("Logged on with user id '%d'\n", $uid);
 
 my $user-model = $odoo.model( 'res.users' );
 say $user-model.perl;
-my $user-ids = $user-model.search( [] );
+my $user-ids   = $user-model.search( [] );
 say "user-ids: " ~ $user-ids.perl;
 
 unless $user-ids.defined && $user-ids.elems > 0 {
@@ -35,7 +35,7 @@ unless $user-ids.defined && $user-ids.elems > 0 {
 }
 
 my $user-id = $user-ids[0];
-my $user = $user-model.read([$user-id]);
+my $user    = $user-model.read([$user-id]);
 die "Duplicate user id" if $user.elems > 1;
 die "User not found!"   if $user.elems == 0;
 say "user: " ~ $user[0].perl;
