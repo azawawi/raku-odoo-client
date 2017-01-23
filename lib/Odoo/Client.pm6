@@ -113,11 +113,29 @@ multi method invoke(Str :$model, Str :$method, :$method-args) {
 Returns an C<Odoo::Client::Model> model. This is a helper method.
 
 =end pod
+#TODO should create a model proxy by queries fields for that model
 method model(Str $name) {
-    return Odoo::Client::Model.new(
+
+    # Create the model proxy
+    my $model = Odoo::Client::Model.new(
         :client(self),
         :name($name)
     );
+
+    # Workaround for button-immediate-install
+    if $name eq 'ir.module.module' {
+        #TODO make this more generic by querying Odoo model
+        $model.^add_method('button-immediate-install', method ($args){
+            my $result = $!client.invoke(
+                model       => 'ir.module.module',
+                method      => 'button_immediate_install',
+                method-args => $args
+            );
+            return $result;
+        })
+    }
+
+    return $model;
 }
 
 =begin pod
