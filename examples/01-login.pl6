@@ -60,5 +60,6 @@ sub create-product($name, $type, $list-price, $image) {
 
 # Create a product to be sold :)
 my $perl6-book-image = "logotype/logo_32x32.png".IO.slurp(:bin);
-my $product = create-product('Perl 6 and Odoo', 'consu', 29.99, $perl6-book-image);
+my $product          = create-product('Perl 6 and Odoo', 'consu', 29.99,
+    $perl6-book-image);
 say $product.perl;
