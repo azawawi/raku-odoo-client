@@ -147,7 +147,7 @@ method model(Str $name) {
 
 =head1 Author
 
-Ahmad M. Zawawi, L<azawawi|https://github.com/azawawi> on C<#perl6>
+Ahmad M. Zawawi, L<azawawi|https://github.com/azawawi> on C<#raku>
 
 =head1 LICENSE
 

@@ -1,10 +1,13 @@
-# Odoo::Client [![Build Status](https://travis-ci.org/azawawi/perl6-odoo-client.svg?branch=master)](https://travis-ci.org/azawawi/perl6-odoo-client) [![Build status](https://ci.appveyor.com/api/projects/status/github/azawawi/perl6-odoo-client?svg=true)](https://ci.appveyor.com/project/azawawi/perl6-odoo-client/branch/master)
+# Odoo::Client
+
+[![Actions
+Status](https://github.com/azawawi/raku-odoo-client/workflows/test/badge.svg)](https://github.com/azawawi/raku-odoo-client/actions)
 
 A simple Odoo ERP client that uses JSON RPC.
 
 ## Example
 
-```Perl6
+```Raku
 use v6;
 use Odoo::Client;
 
@@ -35,14 +38,14 @@ $ zef install Odoo::Client
 
 - To run tests:
 ```
-$ prove -ve "perl6 -Ilib"
+$ prove --ext .rakutest -ve "raku -I."
 ```
 
 - To run all tests including author tests (Please make sure
 [Test::Meta](https://github.com/jonathanstowe/Test-META) is installed):
 ```
 $ zef install Test::META
-$ AUTHOR_TESTING=1 prove -e "perl6 -Ilib"
+$ AUTHOR_TESTING=1 prove --ext .rakutest -ve "raku -I."
 ```
 
 ## See Also
@@ -53,7 +56,7 @@ $ AUTHOR_TESTING=1 prove -e "perl6 -Ilib"
 
 ## Author
 
-Ahmad M. Zawawi, [azawawi](https://github.com/azawawi/) on #perl6
+Ahmad M. Zawawi, [azawawi](https://github.com/azawawi/) on #raku
 
 ## License
 

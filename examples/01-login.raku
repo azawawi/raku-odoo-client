@@ -1,7 +1,6 @@
-#!/usr/bin/env perl6
+#!/usr/bin/env raku 
 
 use v6;
-use lib "lib";
 use Odoo::Client;
 use MIME::Base64;
 
@@ -59,7 +58,7 @@ sub create-product($name, $type, $list-price, $image) {
 }
 
 # Create a product to be sold :)
-my $perl6-book-image = "logotype/logo_32x32.png".IO.slurp(:bin);
-my $product          = create-product('Perl 6 and Odoo', 'consu', 29.99,
-    $perl6-book-image);
+my $book-image = "logotype/logo_32x32.png".IO.slurp(:bin);
+my $product          = create-product('Raku and Odoo', 'consu', 29.99,
+    $book-image);
 say $product.perl;
